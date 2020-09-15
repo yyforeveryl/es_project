@@ -6,5 +6,6 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 * 强大的 TCP/UDP Server 框架，多线程，EventLoop，事件驱动，异步，Worker进程组，Task异步任务，毫秒定时器，SSL/TLS隧道加密
 * EventLoop API，让用户可以直接操作底层的事件循环，将socket，stream，管道等Linux文件加入到事件循环中
 * 定时器、协程对象池、HTTP\SOCK控制器、分布式微服务、RPC支持
+* docker-compose 部署kafka集群、kafka生成者pool管理
 
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Administrator
+ * User: Yyu
  * Date: 2020/9/15
  * Time: 15:33
  */
@@ -20,7 +20,6 @@ class KafkaPool extends AbstractPool
      * 重写构造函数,为了传入kafka配置 (kafka的生产者pool)
      * RedisPool constructor.
      * @param Config      $conf
-     * @param RedisConfig $redisConfig
      * @throws \EasySwoole\Pool\Exception\Exception
      */
     public function __construct(Config $conf)

@@ -52,28 +52,21 @@ class Index extends Controller
                 ],
             ]);
             var_dump($result);
-            var_dump('ok');
-
-
-
-
             //回收对象
             \EasySwoole\Pool\Manager::getInstance()->get('kafka1')->recycleObj($kafka1);
 
-
         });
-
-
         $this->writeJson(200,[],'success');
     }
 
 
     public function test(){
         $request = $this->request();
+       // var_dump(\EasySwoole\Utility\SnowFlake::unmake($str));
 
+
+        /*$request = $this->request();
         $data = $request->getRequestParam();
-        //var_dump($request['a']);
-
         go(function (){
             $csp = new \EasySwoole\Component\Csp();
             $csp->add('t1',function (){
@@ -88,10 +81,10 @@ class Index extends Controller
             print_r($csp->exec());
         });
 
-         $aa = new ProducerProcess();
+         $aa = new ProducerProcess();*/
 
 
         $data = User::aaa();
-        $this->writeJson(200,$data,'success');
+        $this->writeJson(200,getmypid(),'success');
     }
 }

@@ -25,6 +25,7 @@ class EasySwooleEvent implements Event
     {
         // TODO: Implement initialize() method.
         date_default_timezone_set('Asia/Shanghai');
+        /*  TODO:   ORM连接池的配置    start                        */
         $config = new \EasySwoole\ORM\Db\Config(Config::getInstance()->getConf('MYSQL'));
         //连接池配置
         $config->setGetObjectTimeout(3.0); //设置获取连接池对象超时时间
@@ -34,6 +35,23 @@ class EasySwooleEvent implements Event
         $config->setMinObjectNum(5); //设置最小连接池存在连接对象数量
         $config->setAutoPing(5); //设置自动ping客户端链接的间隔
         DbManager::getInstance()->addConnection(new Connection($config));
+        /*   TODO: ORM连接池的配置    end                        */
+
+        /*  TODO:   redis-cluster连接池的配置    start                        */
+        $redisClusterPoolConfig = \EasySwoole\RedisPool\Redis::getInstance()->register('redisCluster',new \EasySwoole\Redis\Config\RedisClusterConfig([
+                ['127.0.0.1', 6391],
+                ['127.0.0.1', 6392],
+                ['127.0.0.1', 6393],
+            ],
+            [
+                'auth' => 'yy123456'
+            ]
+        ));
+        //配置连接池连接数
+        $redisClusterPoolConfig->setMinObjectNum(5);
+        $redisClusterPoolConfig->setMaxObjectNum(20);
+        $redisClusterPoolConfig->setAutoPing(10);//设置自动ping的间隔 版本需>=2.1.2
+        /*  TODO:   redis-cluster连接池的配置    end                        */
     }
 
     public static function mainServerCreate(EventRegister $register)
